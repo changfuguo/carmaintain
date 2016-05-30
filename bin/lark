@@ -1,0 +1,10 @@
+#!/bin/bash
+APP_PATH="node_modules/lark/bin/lark"
+if [ -f "node" ]; then
+    cd ..
+fi
+if [ -f "bin/node" ]; then
+    ./bin/node --harmony $APP_PATH $*
+else
+    node --harmony $APP_PATH $*
+fi
