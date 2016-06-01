@@ -1,0 +1,5 @@
+{
+    "processManage" : {
+        "outputLog" : "logs/node.log"
+    }
+}
