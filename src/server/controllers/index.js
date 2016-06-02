@@ -13,6 +13,6 @@ class IndexController extends BaseController{
 		})
 	}
 }
-
+// console.log(2) 
 
 module.exports = new IndexController().start();

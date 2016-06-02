@@ -10,15 +10,16 @@ import './server'
 class BaseController{
 	constructor(needlogin){
 		this.needlogin = !!needlogin;
-		this.view = view || 'index';
 	}
 
 	start(){
 		var me = this;
 		return function(router) {
 
+			
 			router.get('/*', function*(next){
 				// 这里this已经指向了ctx
+
 				if((this.originalUrl || '').toLowerCase().indexOf('/api/') === 0) {
 					yield me.executeAPIAction(this);
 				} else {
@@ -34,11 +35,12 @@ class BaseController{
 	* executeAction(ctx){
 		let me = this;
 		try{
-			yield this.checkLogin(ctx);
+			//yield this.checkLogin(ctx);
 			this.checkParams && this.checkParams(ctx);
 			let data = yield this.execute(ctx);
 			data = renderReact(ctx.path, data, ctx);
-			ctx.render('index.ejs', {html: data.html, initialState: data.state});
+			
+			yield ctx.render('index.ejs', {html: data.html, initialState: data.state,htmlClassName:"index"});
 		} catch(err) {
 			ctx.render('error.ejs', {message: err})
 		}
@@ -86,4 +88,3 @@ class BaseController{
 }
 // exports to global
 exports.default = global.BaseController = BaseController;
-

@@ -9,14 +9,14 @@ var runSequence =require( 'run-sequence');
 gulp.task('start', function (cb) {
     shell.task(['killall -9 node']);
         
-    var cmd = './node_modules/lark/bin/lark start';
+    var cmd = './node_modules/lark/bin/lark restart';
     if(config.globals__DEV__){
     	cmd = 'NODE_ENV=development '+ cmd
     }
     shell.task([
     	cmd
-    ])(cb);
-    
+    ])();
+    cb();
 });
 
 
@@ -36,6 +36,7 @@ gulp.task('copy',['server-copy','client-copy'],function(cb){
 })
 
 gulp.task('clean',function(cb){
+
     shell.task([
         'cd ' + config.path.base,
         ' rm -rf lib models views controllers lib config index.js',
@@ -48,6 +49,31 @@ gulp.task('dev',['client-client','build','watch'], function(cb) {
 });
 
 
+
+/*
+
+dev |-- client-client
+
+    |-- build
+        |-- server-build
+            |-- server-compile
+                |-- server-compile-js
+                |-- server-compile-json
+        |-- client-build
+            |-- client-server
+    |-- watch
+
+    ------------>
+        |---- copy
+        |---- start
+
+
+
+
+
+
+
+***/
 
 
 
@@ -68,7 +94,7 @@ gulp.task('test',function(cb){
 	
 })
 gulp.task('watch-test',function(cb){
-	var watcher = gulp.watch(config.path.client + '/**/*',['test']);
+	var watcher = gulp.watch(config.path.client + '/**/*',['start']);
 	watcher.on('change', function (event) {
    		console.log('Event type: ' + event.type); // added, changed, or deleted
    		console.log('Event path: ' + event.path); // The path of the modified file

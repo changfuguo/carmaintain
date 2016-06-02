@@ -15,4 +15,4 @@ class CounterAPIController extends BaseController{
 }
 
 
-module.exports = new IndexController().start();
+module.exports = new CounterAPIController().start();

@@ -37,6 +37,7 @@ var start = async function () {
 };
 start();
 **/
+
 if(__DEV__) {
     let webpackConfig = null;
     webpackConfig = require('./webpack.config.dev')(config);
@@ -45,9 +46,9 @@ if(__DEV__) {
     app.use(webpackHotMiddleware(compiler));
 } else if(__PROD__){
      
-    // we do nothing in prod envrioment
+    // we do nothing in prod envrioment 
 }
-
+console.log(`start ${__DEV__}  i am here dd aaa`)
 app.run(function (port) {
   console.log('running on', port);
 });

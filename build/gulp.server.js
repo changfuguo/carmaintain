@@ -63,10 +63,12 @@ gulp.task('server-changed-js', function(cb){
 	return gulp.src(ms, {base: './src/server' })
 	.pipe(changed('./'))
 	.pipe(babel(babelConfig))
-	.pipe(gulp.dest('./'),function() {
+	.pipe(gulp.dest('./'), function() {
 		cb();
 	});
 });
+
+
 gulp.task('server-changed-json', function(cb) {
 
 	var ms = [];
@@ -80,6 +82,9 @@ gulp.task('server-changed-json', function(cb) {
 });
 
 gulp.task('server-changed',['server-changed-js','server-changed-json'], function(cb)  {
+	console.log('server changed');
+	gulp.run('start');
+	console.log('server changed and start');
 	cb();
 });
 
@@ -109,12 +114,13 @@ gulp.task('server-clean-prod',function(cb) {
 gulp.task('server-watch', function (cb) {
     var watcher = gulp.watch([config.path.server + '/**/*'], ['server-changed']);
 
-    watcher.on('change', function (event) {
-    	console.log('after server changed:' + event.path)
-        runSequence('server-copy','start')
-        //console.log('Event type: ' + event.type); // added, changed, or deleted
-        //console.log('Event path: ' + event.path); // The path of the modified file
-    });
+    // 不需要监控某个详细的文件夹某个文件夹
+    // watcher.on('change', function (event) {
+    // 	console.log('after server changed:' + event.path)
+    //     runSequence('start')
+    //     //console.log('Event type: ' + event.type); // added, changed, or deleted
+    //     //console.log('Event path: ' + event.path); // The path of the modified file
+    // });
     cb();
 });
 

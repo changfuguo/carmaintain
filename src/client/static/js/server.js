@@ -1,6 +1,4 @@
 'use strict';
-import 'babel-polyfill'
-
 
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -13,7 +11,7 @@ import App from './containers/App'
 
 const render = function(path, stateData, ctx){
 
-	const store = configureStore(preloadedState);
+	const store = configureStore(stateData);
 
 	const html = renderToString(
 		<Provider store = {store}>

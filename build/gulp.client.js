@@ -18,14 +18,21 @@ var __PROD__ = config.globals.__PROD__;
 
 var TASKS_CLIENT_COPY = [];
 var TASKS_CLIENT_BUILD = [];
+var SERVER_JS_PATH = '';
+var VIEWS_PATH = '';
+
 if(__DEV__) {
     TASKS_CLIENT_COPY = ['client-copy-views','client-copy-server'];
     TASKS_CLIENT_BUILD =  ['client-server','client-views']
     webpackConfig = require('../webpack.config.dev')(config);
+    SERVER_JS_PATH = config.path.base + '/lib';
+    VIEWS_PATH = config.path.base ;
 } else if(__PROD__){
     TASKS_CLIENT_COPY = ['client-copy-views','client-copy-server'];
     TASKS_CLIENT_BUILD =  ['client-client','client-server','client-views']
     webpackConfig = require('../webpack.config.prod')(config);
+    SERVER_JS_PATH = config.path.distServer + '/lib';
+    VIEWS_PATH = config.path.distClient ;
 }
 
 // no mode was designed, throw error
@@ -33,7 +40,10 @@ if (webpackConfig == null) {
     console.log('no mode was designed,please assign a mode at least');
     return false;
 }
-// build server 
+
+/**
+* 服务端渲染，这里不做开发环境和线上环境的区分，实在服务端执行所以直接打到lib里
+*/
 gulp.task('client-server', function(cb){
 
     webpack({
@@ -42,8 +52,7 @@ gulp.task('client-server', function(cb){
         },
         output: {
             filename: 'server.js',
-            path:webpackConfig.output.path
-            //publicPath: '/statics/static/'
+            path:SERVER_JS_PATH
         },
         module: {
             loaders:[
@@ -55,7 +64,7 @@ gulp.task('client-server', function(cb){
                         cacheDirectory: true,
                         plugins: ['transform-runtime'],
                         presets: ['es2015', 'react', 'stage-3'],
-                            env: {
+                        env: {
                                 production: {
                                     presets: ['react-optimize']
                                 }
@@ -75,7 +84,6 @@ gulp.task('client-server', function(cb){
 
 // build client 
 gulp.task('client-client', function(cb){
-
     webpack(webpackConfig,function(err, stats){
         if (err) {
             console.log(err)
@@ -87,8 +95,8 @@ gulp.task('client-client', function(cb){
 
 
 gulp.task('client-views', function(cb){
-    return gulp.src(`${config.path.client}/views/**/*`)
-    .pipe(gulp.dest(`${config.path.distClient}/views`),function(){
+    return gulp.src(`${config.path.client}/views/**/*`,{base: './src/client'})
+    .pipe(gulp.dest(`${VIEWS_PATH}`),function(){
         cb();
     })
 });
@@ -130,17 +138,17 @@ gulp.task('client-build',TASKS_CLIENT_BUILD, function(cb) {
 
 gulp.task('client-watch-views', function(cb){
     var watcher = gulp.watch(config.path.client+'/views/**/*',['client-views']);
-    watcher.on('change', function (event) {
-        runSequence('client-copy-views')
-        //console.log('Event type: ' + event.type); // added, changed, or deleted
-        //console.log('Event path: ' + event.path); // The path of the modified file
-    });
+    // watcher.on('change', function (event) {
+    //     runSequence('client-copy-views')
+    //     //console.log('Event type: ' + event.type); // added, changed, or deleted
+    //     //console.log('Event path: ' + event.path); // The path of the modified file
+    // });
     cb();
 });
 gulp.task('client-watch-server', function(cb){
     var watcher = gulp.watch(config.path.client+'/static/**/*',['client-server']);
     watcher.on('change', function (event) {
-        runSequence('client-copy-server','start')
+        runSequence('start')
         //console.log('Event type: ' + event.type); // added, changed, or deleted
         //console.log('Event path: ' + event.path); // The path of the modified file
     });
