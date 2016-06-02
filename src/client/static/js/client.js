@@ -4,9 +4,9 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import App from './containers/App'
-
-const preloadedState = window.__PRELOADED_STATE__
-const store = configureStore(preloadedState)
+alert('7777  dd')
+const initialState = window.__INITIAL_DATA__
+const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
 
 render(

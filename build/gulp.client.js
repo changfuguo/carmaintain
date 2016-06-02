@@ -148,7 +148,7 @@ gulp.task('client-watch-views', function(cb){
 gulp.task('client-watch-server', function(cb){
     var watcher = gulp.watch(config.path.client+'/static/**/*',['client-server']);
     watcher.on('change', function (event) {
-        runSequence('start')
+        //runSequence('start')
         //console.log('Event type: ' + event.type); // added, changed, or deleted
         //console.log('Event path: ' + event.path); // The path of the modified file
     });

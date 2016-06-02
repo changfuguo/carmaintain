@@ -39,8 +39,8 @@ class BaseController{
 			this.checkParams && this.checkParams(ctx);
 			let data = yield this.execute(ctx);
 			data = renderReact(ctx.path, data, ctx);
-			
-			yield ctx.render('index.ejs', {html: data.html, initialState: data.state,htmlClassName:"index"});
+
+			yield ctx.render('index.ejs', {html: data.html, initialState: data.state, htmlClassName:"index"});
 		} catch(err) {
 			ctx.render('error.ejs', {message: err})
 		}

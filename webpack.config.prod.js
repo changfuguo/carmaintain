@@ -15,7 +15,17 @@ module.exports = function(config){
             publicPath: config.server_host + ':'+ config.server_port + '/static/'
         },
         plugins: [
-             
+            new webpack.optimize.OccurrenceOrderPlugin(),
+            new webpack.DefinePlugin({
+              'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+              }
+            }),
+            new webpack.optimize.UglifyJsPlugin({
+              compressor: {
+                warnings: false
+              }
+            })
         ],
         module: {
             loaders: [

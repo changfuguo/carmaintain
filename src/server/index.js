@@ -37,12 +37,43 @@ var start = async function () {
 };
 start();
 **/
-
 if(__DEV__) {
+
+  	let chokidar = require('chokidar');
+  	let watcher = chokidar.watch(['./lib/**/*.js','./index.js','./controllers/**/*.js','./models/**/*.js','./config/**/*.js']);
+  	let debugpath = require('path');
+	watcher.on('ready', () => {
+	  	watcher.on('all', (event, path) =>{
+		    console.log("Clearing /server/ module cache from server");
+		    console.log(event + ':' + path)
+		    var fullPath = debugpath.resolve(__dirname, path);
+		    if(require.cache[fullPath]) {
+		    	console.log(`exist ${fullPath}`)
+		    	delete require.cache[fullPath];
+
+		    	require(fullPath);
+		    }
+		    // Object.keys(require.cache).forEach(function(id) {
+		    //   if (/[\/\\]server[\/\\]/.test(id)) delete require.cache[id];
+		    // });
+	  	});
+	});
     let webpackConfig = null;
     webpackConfig = require('./webpack.config.dev')(config);
     const compiler = webpack(webpackConfig)
-    app.use(webpackDevMiddleware(compiler, { stats: true,hot: true,noInfo: true, publicPath: webpackConfig.output.publicPath }))
+    app.use(webpackDevMiddleware(compiler, { 
+      stats: {
+        color: true
+      },
+      inline:true,
+      lazy:false,
+      hot: true,
+      noInfo: true, 
+      publicPath: webpackConfig.output.publicPath,
+      headers: {'Access-Control-Allow-Origin': '*'},
+      //contentBase: "http://" + config.server_host + ':' + config.server_port,
+      quiet: true
+    }))
     app.use(webpackHotMiddleware(compiler));
 } else if(__PROD__){
      
