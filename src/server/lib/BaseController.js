@@ -14,12 +14,9 @@ class BaseController{
 
 	start(){
 		var me = this;
-		return function(router) {
-
-			
+		return function(router) {			
 			router.get('/*', function*(next){
 				// 这里this已经指向了ctx
-
 				if((this.originalUrl || '').toLowerCase().indexOf('/api/') === 0) {
 					yield me.executeAPIAction(this);
 				} else {
@@ -27,7 +24,6 @@ class BaseController{
 				}
 				yield next;
 			});
-
 			return router;
 		}
 	}
@@ -38,8 +34,7 @@ class BaseController{
 			//yield this.checkLogin(ctx);
 			this.checkParams && this.checkParams(ctx);
 			let data = yield this.execute(ctx);
-			data = renderReact(ctx.path, data, ctx);
-
+			data = yield renderReact(data, ctx);
 			yield ctx.render('index.ejs', {html: data.html, initialState: data.state, htmlClassName:"index"});
 		} catch(err) {
 			ctx.render('error.ejs', {message: err})

@@ -117,7 +117,7 @@ gulp.task('client-copy-server', function(cb){
 });
 
 gulp.task('client-copy-views', function(cb){
-    console.log(`cp -rf  ${config.path.distClient}/views/**/*  ${config.path.base}/views/`)
+    //console.log(`cp -rf  ${config.path.distClient}/views/**/*  ${config.path.base}/views/`)
     shell.task([
         `cp -rf  ${config.path.distClient}/views  ${config.path.base}/views`
     ])(cb);

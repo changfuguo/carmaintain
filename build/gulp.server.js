@@ -82,6 +82,7 @@ gulp.task('server-changed-json', function(cb) {
 });
 
 gulp.task('server-changed',['server-changed-js','server-changed-json'], function(cb)  {
+	runSequence('start');
 	cb();
 });
 

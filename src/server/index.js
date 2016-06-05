@@ -40,22 +40,19 @@ start();
 if(__DEV__) {
 
   	let chokidar = require('chokidar');
-  	let watcher = chokidar.watch(['./lib/**/*.js','./index.js','./controllers/**/*.js','./models/**/*.js','./config/**/*.js']);
+  	let watcher = chokidar.watch(['./lib/server.js']);
   	let debugpath = require('path');
-	watcher.on('ready', () => {
+		watcher.on('ready', () => {
 	  	watcher.on('all', (event, path) =>{
 		    console.log("Clearing /server/ module cache from server");
 		    console.log(event + ':' + path)
 		    var fullPath = debugpath.resolve(__dirname, path);
-		    if(require.cache[fullPath]) {
+		    if(require.cache[fullPath] && fullPath.endsWith('lib/server.js')) {
 		    	console.log(`exist ${fullPath}`)
 		    	delete require.cache[fullPath];
 
 		    	require(fullPath);
 		    }
-		    // Object.keys(require.cache).forEach(function(id) {
-		    //   if (/[\/\\]server[\/\\]/.test(id)) delete require.cache[id];
-		    // });
 	  	});
 	});
     let webpackConfig = null;

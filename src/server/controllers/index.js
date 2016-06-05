@@ -9,7 +9,7 @@ class IndexController extends BaseController{
 	* execute(ctx) {
 
 		return new Promise( (resolve, reject) =>{
-			resolve({counter: 33})
+			resolve({counter: 3344})
 		})
 	}
 }

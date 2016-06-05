@@ -2,25 +2,31 @@
 
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { Provider } from 'react-redux'
+import { match, RouterContext } from 'react-router'
 
+import routes from './routes'
 import configureStore from './store/configureStore'
-import App from './containers/App'
+ 
+const render = function(stateData, ctx) {
 
-//hhfffffffdddff
-let status = 5;
-const render = function(path, stateData, ctx){
+	return new Promise((resolve, reject) =>{
 
-	const store = configureStore(stateData);
-	const html = renderToString(
-		<Provider store = {store}>
-			<App/>
-		</Provider>
-	);
+		match({ routes: routes, location: ctx.url }, (err, redirect, props) => {
+			const store = configureStore(stateData);
+			const html = renderToString(
+				renderToString(<RouterContext {...props}/>)
+			);
+			
+			const state = store.getState();
+
+			if (err) {
+				reject('server render error');
+			} else {
+				resolve({html,state});
+			}
+		});
+	});
 	
-	const state = store.getState();
-
-	return {html, state};
 }
 
 exports.default = global.renderReact = render;
