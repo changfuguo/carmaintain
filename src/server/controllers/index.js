@@ -5,9 +5,7 @@ class IndexController extends BaseController{
 	constructor(){
 		super(true)
 	}
-
 	* execute(ctx) {
-
 		return new Promise( (resolve, reject) =>{
 			resolve({counter: 3344})
 		})

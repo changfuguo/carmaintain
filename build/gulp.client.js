@@ -46,13 +46,14 @@ if (webpackConfig == null) {
 */
 gulp.task('client-server', function(cb){
 
+	console.log(`start client-server ${SERVER_JS_PATH}`)
     webpack({
         entry: {
             server: "./src/client/static/js/server.js"
         },
         output: {
             filename: 'server.js',
-            path:SERVER_JS_PATH
+            path:'/Users/baidu/projects/carmaintain/lib'//SERVER_JS_PATH
         },
         module: {
             loaders:[
@@ -74,6 +75,7 @@ gulp.task('client-server', function(cb){
             ]
         }
     }, function(err, stats){
+    	console.log('end server.js')
         if(err){
             console.log(err)
         } else {
@@ -96,7 +98,7 @@ gulp.task('client-client', function(cb){
 
 gulp.task('client-views', function(cb){
     return gulp.src(`${config.path.client}/views/**/*`,{base: './src/client'})
-    .pipe(gulp.dest(`${VIEWS_PATH}`),function(){
+    .pipe(gulp.dest(`${VIEWS_PATH}`), function(){
         cb();
     })
 });

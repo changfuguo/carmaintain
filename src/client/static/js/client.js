@@ -1,6 +1,6 @@
 import 'babel-polyfill'
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, browserHistory ,applyRouterMiddleware} from 'react-router';
 import useScroll from 'react-router-scroll';
@@ -13,13 +13,14 @@ const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
 
 const component = (
-	<Router history= {browserHistory} routes={routes} render={applyRouterMiddleware(useScroll())}> 
+	<Router history= {browserHistory}  render={applyRouterMiddleware(useScroll())}> 
+		{routes}
 	</Router>
 );
 
-render(
+ReactDOM.render(
   <Provider store={store} key="provider">
-    {{component}}
+    {component}
   </Provider>,
   rootElement
 )
