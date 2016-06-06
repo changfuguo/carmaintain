@@ -14,21 +14,19 @@ const render = function(stateData, ctx) {
 		try{
 			match({routes, location: ctx.url }, (err, redirect, props) => {
 				const store = configureStore(stateData);
-				const html = '<!-- default -->';
-
+				const state = store.getState();
+				let html = '<!-- default -->';
+				console.log(props)
 				try{
 					html = renderToString(
 						<Provider store={store} key="provider">
 							<RouterContext {...props}/>
 						</Provider>
 					)
-
 					console.log(`html: ${html}`)
 				} catch(err) {
 					console.log(err)
 				}
-
-				const state = store.getState();
 
 				if (err) {
 					reject('server render error');
