@@ -22,7 +22,8 @@ var SERVER_JS_PATH = '';
 var VIEWS_PATH = '';
 
 if(__DEV__) {
-    TASKS_CLIENT_COPY = ['client-copy-views','client-copy-server'];
+    //TASKS_CLIENT_COPY = ['client-copy-views','client-copy-server'];
+    TASKS_CLIENT_COPY = []
     TASKS_CLIENT_BUILD =  ['client-server','client-views']
     webpackConfig = require('../webpack.config.dev')(config);
     SERVER_JS_PATH = config.path.base + '/lib';
@@ -53,7 +54,7 @@ gulp.task('client-server', function(cb){
         },
         output: {
             filename: 'server.js',
-            path:'/Users/baidu/projects/carmaintain/lib'//SERVER_JS_PATH
+            path: SERVER_JS_PATH
         },
         module: {
             loaders:[

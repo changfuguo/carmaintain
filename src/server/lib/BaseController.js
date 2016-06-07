@@ -12,64 +12,41 @@ class BaseController{
 		this.needlogin = !!needlogin;
 	}
 
-	start(){
-		var me = this;
-		return function(router) {			
-			router.get('/*', function*(next){
-				// 这里this已经指向了ctx
-				if((this.originalUrl || '').toLowerCase().indexOf('/api/') === 0) {
-					yield me.executeAPIAction(this);
-				} else {
-					yield me.executeAction(this);
-				}
-				yield next;
-			});
-			return router;
-		}
-	}
-
-	* executeAction(ctx){
+	route(router){
 		let me = this;
-		try{
-			//yield this.checkLogin(ctx);
-			this.checkParams && this.checkParams(ctx);
-			let data = yield this.execute(ctx);
-			data = yield renderReact(data, ctx);
-			yield ctx.render('index.ejs', {html: data.html, initialState: data.state, htmlClassName:"index"});
-		} catch(err) {
-			ctx.render('error.ejs', {message: err})
-		}
+		let methods = Object.getOwnPropertyNames(Object.getPrototypeOf(me));
+
+		methods = methods.filter((method, index)=>{
+			return typeof me[method] == 'function' && method.substr(0,6) == 'Action'
+		})
+		methods.forEach((method, index) => {
+			router.get('/' + method.substr(6).toLowerCase(), function *(next){
+				let data  = yield me[method](this);
+				if (this.originalUrl.indexOf('/api/') == 0) {
+					data = JSON.stringify(data);
+					data = me.checkJSONP(this, data);
+					this.set('Content-Type', 'application/json;charset=UTF-8');
+					this.body = data;
+				} else {
+					data = yield renderReact(data, this);
+					yield this.render('index.ejs', {html: data.html, initialState: data.state, htmlClassName:"index"});
+					yield next;
+				}
+			})
+
+		})
+		return router;		 
 	}
 
+	
 	* executeAPIAction(ctx){
 
-		let res = {};
-		try{
-			yield this.checkLogin(ctx);
-			this.checkParams && this.checkParams(ctx);
-			let data = yield this.execute(ctx);
-
-			res = {
-				errno: 0,
-				msg: '',
-				data: data
-			}
-
-		} catch(err) {
-			res = {
-				errno: 1 ,
-				msg: err
-			}
-		}
-		var output = JSON.stringify(res);
-		output = this.checkJSONP(ctx, output);
-		ctx.set('Content-Type', 'application/json;charset=UTF-8');
-		ctx.ctx.body = output;
+		
 	}
 	* checkLogin(){
 
 	}
-	checkJSONP(){
+	checkJSONP(ctx, str){
 		var cb = (ctx.query.callback || '').replace(/(^\s+|\s+$)/g, '');
 		if(cb && cb.match(/^[a-zA-Z_][a-zA-Z0-9\._]*$/)) {
 			str = '/**/' + cb + '(' + str + ');';

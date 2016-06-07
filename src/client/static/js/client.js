@@ -12,15 +12,11 @@ const initialState = window.__INITIAL_DATA__
 const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
 
-const component = (
-	<Router history= {browserHistory}  render={applyRouterMiddleware(useScroll())}> 
-		{routes}
-	</Router>
-);
+
 
 ReactDOM.render(
   <Provider store={store} key="provider">
-    {component}
+    {routes}
   </Provider>,
   rootElement
 )
