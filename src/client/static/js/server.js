@@ -11,20 +11,20 @@ const render = function(stateData, ctx) {
 
 	return new Promise((resolve, reject) =>{
 		try{
-			match({routes, location: ctx.url }, (err, redirect, props) => {
+			match({routes, location: ctx.originalUrl }, (err, redirect, props) => {
 				const store = configureStore(stateData);
 				const state = store.getState();
-				let html = `<!-- start ${+new Date()} -->`;
+				let html = '';
 				try{
 					html += renderToString(
 						<Provider store={store} key="provider">
 							<RouterContext {...props}/>
 						</Provider>
 					);
-					html += `<!-- end ${+new Date()} -->`;
 				} catch(err) {
 					console.log('render error:' + err)
 				}
+				console.log(html)
 				if (err) {
 					reject('server render error');
 				} else {
