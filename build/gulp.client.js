@@ -76,7 +76,6 @@ gulp.task('client-server', function(cb){
             ]
         }
     }, function(err, stats){
-    	console.log('end server.js')
         if(err){
             console.log(err)
         } else {
@@ -88,6 +87,7 @@ gulp.task('client-server', function(cb){
 // build client 
 gulp.task('client-client', function(cb){
     webpack(webpackConfig,function(err, stats){
+    	console.log(stats.toJson().assets)
         if (err) {
             console.log(err)
         } else {

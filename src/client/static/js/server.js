@@ -10,26 +10,21 @@ import configureStore from './store/configureStore'
 const render = function(stateData, ctx) {
 
 	return new Promise((resolve, reject) =>{
-
-		
 		try{
 			match({routes, location: ctx.url }, (err, redirect, props) => {
 				const store = configureStore(stateData);
 				const state = store.getState();
 				let html = `<!-- start ${+new Date()} -->`;
-				
 				try{
 					html += renderToString(
 						<Provider store={store} key="provider">
 							<RouterContext {...props}/>
 						</Provider>
-					)
+					);
 					html += `<!-- end ${+new Date()} -->`;
-
 				} catch(err) {
 					console.log('render error:' + err)
 				}
-
 				if (err) {
 					reject('server render error');
 				} else {

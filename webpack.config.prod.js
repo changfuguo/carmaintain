@@ -7,7 +7,8 @@ module.exports = function(config){
         entry: {
             app:[
                 './src/client/static/js/client.js'
-            ]
+            ],
+            vendor: ["react", "react-redux", "react-router", "redux", "redux-thunk"]
         },
         output: {
             path: config.path.distClient + '/static/js',
@@ -15,6 +16,7 @@ module.exports = function(config){
             publicPath: config.server_host + ':'+ config.server_port + '/static/'
         },
         plugins: [
+        	new webpack.optimize.DedupePlugin(), // 优化的模块，不需要重复加载相同模块
             new webpack.optimize.OccurrenceOrderPlugin(),
             new webpack.DefinePlugin({
               'process.env': {
@@ -27,6 +29,14 @@ module.exports = function(config){
               }
             })
         ],
+        progress: true,
+		resolve: {
+		    modulesDirectories: [
+		      'src',
+		      'node_modules'
+		    ],
+		    extensions: ['', '.json', '.js', '.jsx']
+		},
         module: {
             loaders: [
               {
