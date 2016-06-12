@@ -37,29 +37,32 @@ module.exports = function(config){
         //watch:true ,
         module: {
             loaders: [
-              {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: /node_modules/,
-                include: __dirname,
-                query: {
-                    cacheDirectory: true,
-                    plugins: [
-                        ['react-transform', {
-                            transforms: [
-                                { 
-                                    transform: 'react-transform-hmr',
-                                    imports: [ 'react' ],
-                                    locals: [ 'module' ]
-                                }
-                            ]
-                        }],
-                        'transform-runtime'
-                    ],
-                    presets: ['es2015', 'react', 'stage-3'],
+              	{
+	                test: /\.js$/,
+	                loader: 'babel',
+	                exclude: /node_modules/,
+	                include: __dirname,
+	                query: {
+	                    cacheDirectory: true,
+	                    plugins: [
+	                        ['react-transform', {
+	                            transforms: [
+	                                { 
+	                                    transform: 'react-transform-hmr',
+	                                    imports: [ 'react' ],
+	                                    locals: [ 'module' ]
+	                                }
+	                            ]
+	                        }],
+	                        'transform-runtime'
+	                    ],
+	                    presets: ['es2015', 'react', 'stage-3'],
 
-                }
-              }
+	                }
+              	},{
+				    test:   /\.scss/,
+				    loader: 'style!css!sass'
+				}
             ]
         }                                   
     }
