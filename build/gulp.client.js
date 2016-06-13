@@ -29,7 +29,7 @@ if(__DEV__) {
     SERVER_JS_PATH = config.path.base + '/lib';
     VIEWS_PATH = config.path.base ;
 } else if(__PROD__){
-    TASKS_CLIENT_COPY = ['client-copy-views','client-copy-server'];
+    TASKS_CLIENT_COPY = ['client-copy-views','client-copy-client','client-copy-server'];
     TASKS_CLIENT_BUILD =  ['client-client','client-server','client-views']
     webpackConfig = require('../webpack.config.prod')(config);
     SERVER_JS_PATH = config.path.distServer + '/lib';
@@ -61,18 +61,8 @@ gulp.task('client-server', function(cb){
                 {
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
-                    loader: 'babel',
-                    query: {
-                        cacheDirectory: true,
-                        plugins: ['transform-runtime'],
-                        presets: ['es2015', 'react', 'stage-3'],
-                        env: {
-                                production: {
-                                    presets: ['react-optimize']
-                                }
-                            }
-                        }
-                    }
+                    loader: 'babel'
+                }
             ]
         }
     }, function(err, stats){
@@ -106,14 +96,14 @@ gulp.task('client-views', function(cb){
 
 gulp.task('client-copy-client', function(cb){
     shell.task([
-        `cp -rf  ${config.path.distClient}/static/js/bundle.js  ${config.path.base}/statics/static/app.js`
+        `cp -rf  ${config.path.distClient}/static/  ${config.path.base}/statics/static/`
     ])();
     
     setTimeout(function() { cb() }, 10);
 })
 gulp.task('client-copy-server', function(cb){
-    shell.task([
-        `cp -rf  ${config.path.distClient}/static/js/server.js  ${config.path.base}/lib/server.js`
+    shell.task([''
+        //`cp -rf  ${config.path.distClient}/static/js/server.js  ${config.path.base}/lib/server.js`
     ])();
     
     setTimeout(function() { cb() }, 10);

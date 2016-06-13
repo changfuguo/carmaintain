@@ -15,9 +15,9 @@ var babelConfig = JSON.parse(fs.readFileSync(path.resolve(rootDir,'.babelrc'),'u
 var modules = ['config','controllers','models','lib'];
 var clientModules = ['views','static'];
 
-
+console.log('process.env.NODE_ENV: ' + process.env.NODE_ENV)
 var config = {
-	env: process.env.NODE_ENV || 'development',
+	env: process.env.NODE_ENV || 'production',
 	path: {
 		modules:{},
 		clientModules: {}

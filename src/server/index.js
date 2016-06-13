@@ -71,7 +71,9 @@ if(__DEV__) {
       //contentBase: "http://" + config.server_host + ':' + config.server_port,
       quiet: true
     }))
-    app.use(webpackHotMiddleware(compiler));
+    app.use(webpackHotMiddleware(compiler),{
+    	heartbeat: 20 * 1000
+    });
 } else if(__PROD__){
      
     // we do nothing in prod envrioment 

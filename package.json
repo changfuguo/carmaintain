@@ -52,7 +52,8 @@
     "dev": "NODE_ENV=development gulp dev",
     "start": "NODE_ENV=production gulp build && node index.js",
     "build": "NODE_ENV=production gulp build",
-    "clean": "gulp clean"
+    "clean": "gulp clean",
+    "deploy": "NODE_ENV=production gulp build && NODE_ENV=production gulp copy"
   },
   "lark-app": true
 }

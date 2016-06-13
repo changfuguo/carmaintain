@@ -6,5 +6,7 @@ fi
 if [ -f "bin/node" ]; then
     ./bin/node --harmony $APP_PATH $*
 else
+	echo $APP_PATH
+	echo $*
     node --harmony $APP_PATH $*
 fi

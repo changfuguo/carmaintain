@@ -3,7 +3,7 @@ var webpack = require('webpack')
 
 module.exports = function(config){
     var webpackConfig = {
-        devtool: 'inline-source-map',
+        devtool: 'cheap-module-source-map',
         entry: {
             app:[
                 './src/client/static/js/client.js'

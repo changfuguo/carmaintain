@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+self=$0;
+cmd=$1;
+
+if [ 'x'${cmd} == 'xrestart' ]; then
+    if [ -f './node' ]; then
+        cd ..
+    fi
+    if [ ! -f '.pm2/pm2.pid' ]; then
+        echo ".pm2/pm2.pid not found, no need to kill";
+        exit 0;
+    fi
+    echo "Killing PM2!";
+    cat .pm2/pm2.pid | xargs kill
+    ./bin/appui_control start
+    exit 0
+fi
+
+cmd="${self%/*}/lark -e production $cmd";
+$cmd;

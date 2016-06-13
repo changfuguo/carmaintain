@@ -34,6 +34,11 @@ module.exports = function(config){
 		    ],
 		    extensions: ['', '.json', '.js', '.jsx']
 		},
+		globals : {
+			'process.env'  : {
+			    'NODE_ENV' : JSON.stringify('development')
+			}
+		},
         //watch:true ,
         module: {
             loaders: [
@@ -41,24 +46,7 @@ module.exports = function(config){
 	                test: /\.js$/,
 	                loader: 'babel',
 	                exclude: /node_modules/,
-	                include: __dirname,
-	                query: {
-	                    cacheDirectory: true,
-	                    plugins: [
-	                        ['react-transform', {
-	                            transforms: [
-	                                { 
-	                                    transform: 'react-transform-hmr',
-	                                    imports: [ 'react' ],
-	                                    locals: [ 'module' ]
-	                                }
-	                            ]
-	                        }],
-	                        'transform-runtime'
-	                    ],
-	                    presets: ['es2015', 'react', 'stage-3'],
-
-	                }
+	                include: __dirname
               	},{
 				    test:   /\.scss/,
 				    loader: 'style!css!sass'

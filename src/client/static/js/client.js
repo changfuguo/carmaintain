@@ -1,4 +1,4 @@
-import 'babel-polyfill'
+//import 'babel-polyfill'   //这里先去掉这个，有babel-transform-runtime用来做转换的
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
