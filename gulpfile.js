@@ -24,7 +24,10 @@ require('./build/gulp.server');
 require('./build/gulp.client');
 
 gulp.task('build',['client-build','server-build'], function(cb){
-	cb();
+	shell.task([
+        ` cd  ${config.path.base}/dist && tar -czvf output.tar.gz *`,
+        ` mv ${config.path.base}/dist/output.tar.gz ${config.path.base}`
+    ])(cb)
 })
 
 gulp.task('watch',['server-watch'],function(cb){

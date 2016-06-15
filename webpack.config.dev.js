@@ -34,6 +34,7 @@ module.exports = function(config){
 		    ],
 		    extensions: ['', '.json', '.js', '.jsx']
 		},
+		recordsPath: path.join(__dirname, 'console/_records.json'),
 		globals : {
 			'process.env'  : {
 			    'NODE_ENV' : JSON.stringify('development')
@@ -48,8 +49,9 @@ module.exports = function(config){
 	                exclude: /node_modules/,
 	                include: __dirname
               	},{
-				    test:   /\.scss/,
-				    loader: 'style!css!sass'
+				    test: /\.scss$/, 
+				    //loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' 
+				    loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass?outputStyle=expanded&sourceMap' 
 				}
             ]
         }                                   

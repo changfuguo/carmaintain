@@ -10,6 +10,7 @@ var runSequence =require( 'run-sequence');
 var gulpWebpack = require('gulp-webpack');
 var webpack =  require('webpack')
 var config = require('./config.build');
+var fs = require('fs');
 /*build client for server render**/
 var webpackConfig = null;
 var __DEV__ = config.globals.__DEV__;
@@ -47,6 +48,15 @@ if (webpackConfig == null) {
 */
 gulp.task('client-server', function(cb){
 
+
+	var nodeModules = {};
+	fs.readdirSync('node_modules')
+	.filter(function(x) {
+		return ['.bin'].indexOf(x) === -1;
+	})
+	.forEach(function(mod) {
+		nodeModules[mod] = 'commonjs ' + mod;
+	});
 	console.log(`start client-server ${SERVER_JS_PATH}`)
     webpack({
         entry: {
@@ -56,6 +66,11 @@ gulp.task('client-server', function(cb){
             filename: 'server.js',
             path: SERVER_JS_PATH
         },
+        plugins:[
+        	new webpack.IgnorePlugin(/\.(css|scss)$/),
+        	new webpack.NormalModuleReplacementPlugin(/\.(css|scss)$/, 'node-noop')
+        ],
+        externals: nodeModules,
         module: {
             loaders:[
                 {
