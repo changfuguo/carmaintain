@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
-
+var AssetsPlugin = require('assets-webpack-plugin')
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 module.exports = function(config){
     console.log('dev:',__dirname)
     var webpackConfig = {
@@ -20,6 +21,13 @@ module.exports = function(config){
             publicPath: '/static/js'//config.server_host + ':'+ config.server_port + '/static/js'
         },
         plugins: [
+	        new webpack.DefinePlugin({
+	            "process.env": {
+	            	'NODE_ENV' : JSON.stringify('development'),
+	            	'__BROWSER__': JSON.stringify(true)
+	            }
+	        }),
+	        new ExtractTextPlugin("[name].css"),
         	new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js'),
         	new webpack.optimize.DedupePlugin(),// 优化的模块，不需要重复加载相同模块
             new webpack.optimize.OccurenceOrderPlugin(), //按照出现的顺序打包
@@ -35,11 +43,7 @@ module.exports = function(config){
 		    extensions: ['', '.json', '.js', '.jsx']
 		},
 		recordsPath: path.join(__dirname, 'console/_records.json'),
-		globals : {
-			'process.env'  : {
-			    'NODE_ENV' : JSON.stringify('development')
-			}
-		},
+	
         //watch:true ,
         module: {
             loaders: [
@@ -51,7 +55,10 @@ module.exports = function(config){
               	},{
 				    test: /\.scss$/, 
 				    //loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' 
-				    loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass?outputStyle=expanded&sourceMap' 
+				    //loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass?outputStyle=expanded&sourceMap' 
+				    //loader: 'style!css!sass?outputStyle=expanded&sourceMap' ,
+				    loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader")
+
 				}
             ]
         }                                   

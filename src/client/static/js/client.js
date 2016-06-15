@@ -9,7 +9,7 @@ import routes from './routes'
 const initialState = window.__INITIAL_DATA__
 const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
-
+global.__SERVER__ = false ;
 ReactDOM.render(
   <Provider store={store} key="provider">
     {routes}

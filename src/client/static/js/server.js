@@ -6,7 +6,8 @@ import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 import routes from './routes'
 import configureStore from './store/configureStore'
- 
+
+global.__SERVER__ = true ;
 const render = function(stateData, ctx) {
 
 	return new Promise((resolve, reject) =>{

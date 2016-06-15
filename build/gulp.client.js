@@ -70,6 +70,12 @@ gulp.task('client-server', function(cb){
         	new webpack.IgnorePlugin(/\.(css|scss)$/),
         	new webpack.NormalModuleReplacementPlugin(/\.(css|scss)$/, 'node-noop')
         ],
+        globals : {
+			'process.env'  : {
+			    'NODE_ENV' : __DEV__ ? 'development':'production',
+			    '__SERVER__':true
+			}
+		},
         externals: nodeModules,
         module: {
             loaders:[
@@ -77,7 +83,11 @@ gulp.task('client-server', function(cb){
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
                     loader: 'babel'
-                }
+                },{
+				    test: /\.scss$/, 
+				    //loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' 
+				    loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!sass?outputStyle=expanded&sourceMap' 
+				}
             ]
         }
     }, function(err, stats){
