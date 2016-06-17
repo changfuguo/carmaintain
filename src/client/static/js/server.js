@@ -4,15 +4,18 @@ import React from 'react'
 import {renderToString} from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
-import routes from './routes'
+import createHistory from 'history/lib/createMemoryHistory'
+import creatRoutes from './routes'
 import configureStore from './store/configureStore'
 
 
 const render = function(stateData, ctx) {
-
+	const history = createHistory();
+	const routes = creatRoutes(history);
+	const location = history.createLocation(ctx.originalUrl);
 	return new Promise((resolve, reject) =>{
 		try{
-			match({routes, location: ctx.originalUrl }, (err, redirect, props) => {
+			match({routes, location}, (err, redirect, props) => {
 				const store = configureStore(stateData);
 				const state = store.getState();
 				let html = '';

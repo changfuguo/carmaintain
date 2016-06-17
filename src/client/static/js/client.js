@@ -2,11 +2,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { Router, browserHistory ,applyRouterMiddleware} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux'
+import {browserHistory} from 'react-router'
 import configureStore from './store/configureStore'
-import routes from './routes'
+import createRoutes from './routes'
 const initialState = window.__INITIAL_DATA__
 const store = configureStore(initialState)
+const history = syncHistoryWithStore(browserHistory,store)
 const rootElement = document.getElementById('app')
 global.__SERVER__ = false ;
 
@@ -14,7 +16,7 @@ global.__SERVER__ = false ;
 let render = () => {
 	ReactDOM.render(
   		<Provider store={store} key="provider">
-    		{routes}
+    		{createRoutes(history)}
   		</Provider>,
   		rootElement
 	)
