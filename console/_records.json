@@ -1,5 +1,5 @@
 {
-  "nextFreeModuleId": 328,
+  "nextFreeModuleId": 339,
   "modules": {
     "byIdentifier": {
       "node_modules/webpack/node_modules/node-libs-browser/node_modules/process/browser.js": 1,
@@ -90,7 +90,7 @@
       "node_modules/react-router/lib/createMemoryHistory.js": 86,
       "node_modules/react-router/lib/createRouterHistory.js": 87,
       "node_modules/react-router/lib/useRouterHistory.js": 88,
-      "node_modules/react-router/node_modules/history/lib/DOMStateStorage.js": 326,
+      "node_modules/react-router/node_modules/history/lib/DOMStateStorage.js": 338,
       "node_modules/react-router/node_modules/history/lib/createDOMHistory.js": 90,
       "node_modules/react-router/node_modules/history/lib/createHashHistory.js": 91,
       "node_modules/react-router/node_modules/history/lib/createHistory.js": 92,
@@ -303,7 +303,13 @@
       "node_modules/css-loader/index.js!node_modules/sass-loader/index.js?outputStyle=expanded&sourceMap!src/client/static/js/components/Counter/index.scss": 322,
       "node_modules/style-loader/index.js!node_modules/css-loader/index.js!node_modules/sass-loader/index.js?outputStyle=expanded&sourceMap!src/client/static/js/components/Counter/index.scss": 323,
       "node_modules/extract-text-webpack-plugin/loader.js?{\"omit\":1,\"extract\":true,\"remove\":true}!node_modules/style-loader/index.js!node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 325,
-      "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 327
+      "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 327,
+      "node_modules/redbox-react/lib/index.js": 331,
+      "node_modules/redbox-react/lib/lib.js": 332,
+      "node_modules/redbox-react/lib/style.js": 333,
+      "node_modules/redbox-react/node_modules/error-stack-parser/error-stack-parser.js": 334,
+      "node_modules/redbox-react/node_modules/error-stack-parser/node_modules/stackframe/stackframe.js": 335,
+      "node_modules/redbox-react/node_modules/object-assign/index.js": 336
     }
   },
   "nextFreeChunkId": 2,
@@ -314,9 +320,9 @@
     },
     "byBlocks": {}
   },
-  "prepreHash": "3afc0e73fd14e0b4d7d9",
-  "preHash": "bb1d0ce08ff0bf622e6c",
-  "hash": "d90617b250eec919a636",
+  "prepreHash": "fa5918b408a702f5ab92",
+  "preHash": "04fa258cc4e694bde5a1",
+  "hash": "e32c5495610705898fe5",
   "moduleHashs": {
     "multi app": "be97399de7f2a710ae1b3010747cec59",
     "multi vendor": "53dfa7f7c493302fa7fd9105856ff5f2",
@@ -407,7 +413,7 @@
     "/Users/baidu/projects/carmaintain/node_modules/react-router/lib/createRouterHistory.js": "588de2f4ce381f197fa8914fbd9f5352",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/lib/useRouterHistory.js": "be0939cdb4140a8c599d9b602b03e74f",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createDOMHistory.js": "c1db264024e722c2b46169f4c51a1122",
-    "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createHashHistory.js": "7724d388a1d7704d18ac4d3cef673698",
+    "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createHashHistory.js": "f415bdfe8183b8856cd990e7fbaecbc2",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createHistory.js": "9cfce62327f8d6b5f031fccb97bfc421",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/useBasename.js": "4bcdcda1703bcf8a741be21753b85483",
     "/Users/baidu/projects/carmaintain/node_modules/react/lib/CSSProperty.js": "5b426070176e59db2f8417f1e4dbc4c0",
@@ -448,13 +454,13 @@
     "/Users/baidu/projects/carmaintain/node_modules/redux/lib/utils/warning.js": "6c2ebaa1215cf74d297d5dead24c8e01",
     "/Users/baidu/projects/carmaintain/node_modules/redux/node_modules/lodash/isPlainObject.js": "360b0913045aff117e2b5f2734ffb47f",
     "/Users/baidu/projects/carmaintain/node_modules/webpack-hot-middleware/node_modules/html-entities/lib/html5-entities.js": "62fe6858fb83faade4a492ff3fd8967f",
-    "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/client.js": "e7665035f6c9c2cda3e918b2a8ba3655",
-    "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.js": "53a83aad48fe49544260d08c5a693707",
+    "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/client.js": "79b14f9c5be1585961c731453c6af357",
+    "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.js": "4aa08722a1840530e0c1acfde12bccb2",
     "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/containers/Counter/index.js": "aa04e1135d8047201393dbe49d9aeea3",
     "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/containers/index.js": "4823a1839d906fc010af9fde648ef98b",
     "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/reducers/Counter.js": "29a80978fc6ce615e9242d93861adda7",
     "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/routes/index.js": "85acd826a44a49e94cc3b2c347752a87",
-    "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/store/configureStore.js": "9241922cfe0a7a0aa040e4306e8bd19f",
+    "/Users/baidu/projects/carmaintain/node_modules/babel-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/store/configureStore.js": "d62331af320cde0867f68ad81902d144",
     "/Users/baidu/projects/carmaintain/node_modules/css-loader/lib/css-base.js": "da2eeee18eec2839ee1e23884f2f7f53",
     "/Users/baidu/projects/carmaintain/node_modules/react-redux/lib/components/Provider.js": "7e13683e829b49df9ef8e8116b25cc8e",
     "/Users/baidu/projects/carmaintain/node_modules/react-redux/lib/components/connect.js": "355e325b19d8fde759f139ad6878cdc5",
@@ -499,7 +505,7 @@
     "/Users/baidu/projects/carmaintain/node_modules/react-router/lib/useRoutes.js": "7bc2150532907fb88085043758e00da4",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/lib/withRouter.js": "5c3ea168fbb04190a7a0db3f80f5b637",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/AsyncUtils.js": "db0495350defbfeb61466d925a693906",
-    "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createBrowserHistory.js": "9d25b9cbaf8aa06d31a810382bc06bbe",
+    "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createBrowserHistory.js": "c05a7f77f1060c57780122cd34f91763",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createLocation.js": "a5127a853872553d5d97747476f6e412",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/createMemoryHistory.js": "2888a66dfdf690f82f94d00316e9f293",
     "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/node_modules/deep-equal/index.js": "ce3b4632286ccd0e063580b976e09388",
@@ -612,13 +618,19 @@
     "/Users/baidu/projects/carmaintain/node_modules/webpack-hot-middleware/process-update.js": "da6c88d083616ef9671e1f583ff764be",
     "/Users/baidu/projects/carmaintain/node_modules/webpack/buildin/module.js": "25f0f4d1965290bc52e9bdf090331f55",
     "/Users/baidu/projects/carmaintain/node_modules/react-redux/node_modules/lodash/isPlainObject.js|/Users/baidu/projects/carmaintain/node_modules/redux/node_modules/lodash/isPlainObject.js": "496a775f886a86917d4a4d5caa2f9bdf",
-    "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/DOMStateStorage.js": "625e84bf131620f8d890ff3ae1b904f4",
-    "/Users/baidu/projects/carmaintain/node_modules/extract-text-webpack-plugin/loader.js?{\"omit\":1,\"extract\":true,\"remove\":true}!/Users/baidu/projects/carmaintain/node_modules/style-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "7a9cb95b0fa9d5318e2304b34c3924c2",
-    "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "0acf4eb1f61bc45acee4e49294879bc4"
+    "/Users/baidu/projects/carmaintain/node_modules/extract-text-webpack-plugin/loader.js?{\"omit\":1,\"extract\":true,\"remove\":true}!/Users/baidu/projects/carmaintain/node_modules/style-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "8f9c5473b5e57f4d02a956ec07526691",
+    "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "5c76bdc5533e08520cf6c7c2e472f8ca",
+    "/Users/baidu/projects/carmaintain/node_modules/redbox-react/lib/index.js": "c20df36da29c611bf9ca243b6852fdce",
+    "/Users/baidu/projects/carmaintain/node_modules/redbox-react/lib/lib.js": "01138e74a0f4b82162d525b8cce406d3",
+    "/Users/baidu/projects/carmaintain/node_modules/redbox-react/lib/style.js": "dc14a99a65ae853219058ab45c06bb97",
+    "/Users/baidu/projects/carmaintain/node_modules/redbox-react/node_modules/error-stack-parser/error-stack-parser.js": "e5604f265f914646793e64fe81a619eb",
+    "/Users/baidu/projects/carmaintain/node_modules/redbox-react/node_modules/error-stack-parser/node_modules/stackframe/stackframe.js": "310cc4638823ccf4d4f2c13041faa6f4",
+    "/Users/baidu/projects/carmaintain/node_modules/redbox-react/node_modules/object-assign/index.js": "e8dbcee261a9bc99d2efabb6b968aae9",
+    "/Users/baidu/projects/carmaintain/node_modules/react-router/node_modules/history/lib/DOMStateStorage.js": "65b850b7d2b954ea4753a461108db361"
   },
   "chunkHashs": {
-    "0": "8815c9672e133062945ac4bf72fd9b18",
-    "1": "6ceecf1b408682fa14c2c72cb139b067"
+    "0": "596da15e19ffc590857a746d585ed3c5",
+    "1": "f3bf0f6797858baf735bac6d0481ba0a"
   },
   "chunkModuleIds": {
     "0": [
@@ -877,8 +889,8 @@
       279,
       280,
       296,
-      324,
-      326
+      337,
+      338
     ],
     "1": [
       0,
@@ -918,7 +930,13 @@
       293,
       294,
       295,
-      325
+      325,
+      331,
+      332,
+      333,
+      334,
+      335,
+      336
     ]
   },
   "extract-text-webpack-plugin": [
@@ -944,6 +962,156 @@
       },
       "chunkHashs": {
         "0": "1d29049b24f2812a2774b5a6162ebee2"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "nextFreeModuleId": 2,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 0
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      },
+      "prepreHash": "x",
+      "preHash": "362e8c4cb3c0f07b0416",
+      "hash": "288d62074d1ac7c72b1d",
+      "moduleHashs": {
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "ff8e67933b9ae61d089213752f86528a",
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/lib/css-base.js": "072852792a0d76275fe8cf6cb22eaf81"
+      },
+      "chunkHashs": {
+        "0": "3f74e0e83f71a9671306b5ebeec752ea"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "nextFreeModuleId": 2,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 0
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      },
+      "prepreHash": "x",
+      "preHash": "139fea65a3a277edb67e",
+      "hash": "fda85ee1c69ac71484e0",
+      "moduleHashs": {
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "ee9405280f0aa471b73eae17592b8b3f",
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/lib/css-base.js": "072852792a0d76275fe8cf6cb22eaf81"
+      },
+      "chunkHashs": {
+        "0": "fde9b24f19e47a56d0b54aa47a9edaa2"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "nextFreeModuleId": 2,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 0
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      },
+      "prepreHash": "x",
+      "preHash": "139fea65a3a277edb67e",
+      "hash": "fda85ee1c69ac71484e0",
+      "moduleHashs": {
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "ee9405280f0aa471b73eae17592b8b3f",
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/lib/css-base.js": "072852792a0d76275fe8cf6cb22eaf81"
+      },
+      "chunkHashs": {
+        "0": "fde9b24f19e47a56d0b54aa47a9edaa2"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "nextFreeModuleId": 2,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 0
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      },
+      "prepreHash": "x",
+      "preHash": "139fea65a3a277edb67e",
+      "hash": "fda85ee1c69ac71484e0",
+      "moduleHashs": {
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "ee9405280f0aa471b73eae17592b8b3f",
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/lib/css-base.js": "072852792a0d76275fe8cf6cb22eaf81"
+      },
+      "chunkHashs": {
+        "0": "fde9b24f19e47a56d0b54aa47a9edaa2"
+      },
+      "chunkModuleIds": {
+        "0": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "nextFreeModuleId": 2,
+      "modules": {
+        "byIdentifier": {
+          "node_modules/css-loader/lib/css-base.js": 1,
+          "node_modules/css-loader/index.js!node_modules/sass-loader/index.js!src/client/static/js/components/Counter/index.scss": 0
+        }
+      },
+      "nextFreeChunkId": 1,
+      "chunks": {
+        "byName": {},
+        "byBlocks": {}
+      },
+      "prepreHash": "x",
+      "preHash": "139fea65a3a277edb67e",
+      "hash": "fda85ee1c69ac71484e0",
+      "moduleHashs": {
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/index.js!/Users/baidu/projects/carmaintain/node_modules/sass-loader/index.js!/Users/baidu/projects/carmaintain/src/client/static/js/components/Counter/index.scss": "ee9405280f0aa471b73eae17592b8b3f",
+        "/Users/baidu/projects/carmaintain/node_modules/css-loader/lib/css-base.js": "072852792a0d76275fe8cf6cb22eaf81"
+      },
+      "chunkHashs": {
+        "0": "fde9b24f19e47a56d0b54aa47a9edaa2"
       },
       "chunkModuleIds": {
         "0": [

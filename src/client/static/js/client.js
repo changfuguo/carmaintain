@@ -5,17 +5,39 @@ import { Provider } from 'react-redux'
 import { Router, browserHistory ,applyRouterMiddleware} from 'react-router';
 import configureStore from './store/configureStore'
 import routes from './routes'
-
 const initialState = window.__INITIAL_DATA__
 const store = configureStore(initialState)
 const rootElement = document.getElementById('app')
 global.__SERVER__ = false ;
-ReactDOM.render(
-  <Provider store={store} key="provider">
-    {routes}
-  </Provider>,
-  rootElement
-)
+
+
+let render = () => {
+	ReactDOM.render(
+  		<Provider store={store} key="provider">
+    		{routes}
+  		</Provider>,
+  		rootElement
+	)
+};
+
 if(module.hot) {
-  module.hot.accept();
+	let renderNormally = render;
+	const renderException = (error) => {
+		const RedBox = require('redbox-react');
+		console.log(require('redbox-react'))
+    	ReactDOM.render(<RedBox error={error}/>, rootElement);
+	};
+
+	render = () => {
+		try{
+			renderNormally();
+		} catch(e) {
+			renderException(e);
+		}
+	};
+  	module.hot.accept('./routes', () => {
+  		render();
+  	});
 }
+
+render();

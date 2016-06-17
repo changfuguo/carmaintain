@@ -42,6 +42,7 @@
     "react-router-redux": "^4.0.4",
     "react-router-scroll": "^0.2.0",
     "react-transform-hmr": "^1.0.4",
+    "redbox-react": "^1.2.6",
     "redux": "^3.5.2",
     "redux-thunk": "^2.1.0",
     "routesroutes": "^2.4.0",
