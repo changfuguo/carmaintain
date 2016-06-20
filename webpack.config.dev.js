@@ -10,8 +10,7 @@ module.exports = function(config){
             app:[
                 'webpack-hot-middleware/client?path=http://' + config.server_host + ':' + config.server_port + '/__webpack_hmr&timeout=20000&reload=true',
                 './src/client/static/js/client.js'
-            ],
-            vendor: ["react", "react-redux", "react-router","react-dom","redux", "redux-thunk"]
+            ]
         },
         output: {
             path: config.path.base + '/statics/static/js',
@@ -28,7 +27,6 @@ module.exports = function(config){
 	            }
 	        }),
 	        new ExtractTextPlugin("[name].css"),
-        	new webpack.optimize.CommonsChunkPlugin('vendor',  'vendor.js'),
         	new webpack.optimize.DedupePlugin(),// 优化的模块，不需要重复加载相同模块
             new webpack.optimize.OccurenceOrderPlugin(), //按照出现的顺序打包
             new webpack.HotModuleReplacementPlugin(), //热体验用的
@@ -36,8 +34,8 @@ module.exports = function(config){
         ],
         progress: true,
 		resolve: {
+			root: path.resolve('src'),
 		    modulesDirectories: [
-		      'src',
 		      'node_modules'
 		    ],
 		    extensions: ['', '.json', '.js', '.jsx']
@@ -52,6 +50,7 @@ module.exports = function(config){
 	                loader: 'babel',
 	                exclude: /node_modules/,
 	                include: __dirname
+	               
               	},{
 				    test: /\.scss$/, 
 				    //loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' 
@@ -64,5 +63,34 @@ module.exports = function(config){
         }                                   
     }
 
-    return webpackConfig;
+
+    var venderWebpckConfig = {
+    	devtool: 'cheap-module-source-map',
+    	entry:{
+    		vendor: ["react", "react-redux", "react-router","react-dom","redux", "redux-thunk"]
+    	},
+    	output: {
+    		path: config.path.base + '/statics/static/js',
+            //filename: '[name]-[chunkhash:8].js',
+            filename: '[name].js',
+            //chunkFilename: "[id].bundle.js",
+            publicPath: '/static/js',//config.server_host + ':'+ config.server_port + '/static/js',
+            library:'[name]_library'
+        },
+    	plugins: [
+	        new webpack.DefinePlugin({
+	            "process.env": {
+	            	'NODE_ENV' : JSON.stringify('development'),
+	            	'__BROWSER__': JSON.stringify(true)
+	            }
+	        }),
+            new webpack.DllPlugin({
+		      
+		      path: path.join(__dirname, '/dist', '[name]-manifest.json'),
+		      
+		      name: '[name]_library'
+		    })
+        ],
+    };
+    return {client:webpackConfig,vendor:venderWebpckConfig};
 }

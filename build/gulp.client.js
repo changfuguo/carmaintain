@@ -2,7 +2,6 @@ var gulp =require('gulp');
 var babel =require( 'gulp-babel');
 var del =require('del');
 var config = require('./config.build');
-var modules = config.modules, babelConfig = config.babelConfig;
 var shell =require( 'gulp-shell');
 var path =require( 'path');
 var changed  =require( 'gulp-changed');
@@ -11,6 +10,7 @@ var gulpWebpack = require('gulp-webpack');
 var webpack =  require('webpack')
 var config = require('./config.build');
 var fs = require('fs');
+var util = require('util');
 /*build client for server render**/
 var webpackConfig = null;
 var __DEV__ = config.globals.__DEV__;
@@ -99,9 +99,32 @@ gulp.task('client-server', function(cb){
     })
 })
 
+/**
+*  这里打包vendor 将vendor单独拎出来，直接用作生产环境的 
+*
+*/
+gulp.task('client-vendor', function(cb) {
+	webpack(webpackConfig.vendor,function(err, stats){
+    	console.log(stats.toJson().assets)
+        if (err) {
+            console.log(err)
+        } else {
+            cb();
+        }
+    })
+})
 // build client 
+
 gulp.task('client-client', function(cb){
-    webpack(webpackConfig,function(err, stats){
+
+	var clientConfig = webpackConfig.client;
+	clientConfig.plugins.push(
+		new webpack.DllReferencePlugin({
+		    context: path.resolve(__dirname,'..'),
+		    manifest: require('../dist/vendor-manifest.json')
+		})
+	)
+    webpack(clientConfig, function(err, stats){
     	console.log(stats.toJson().assets)
         if (err) {
             console.log(err)
@@ -122,9 +145,7 @@ gulp.task('client-views', function(cb){
 gulp.task('client-copy-client', function(cb){
     shell.task([
         `cp -rf  ${config.path.distClient}/static/  ${config.path.base}/statics/static/`
-    ])();
-    
-    setTimeout(function() { cb() }, 10);
+    ])(cb);
 })
 gulp.task('client-copy-server', function(cb){
     shell.task([''
@@ -150,8 +171,8 @@ gulp.task('client-copy', TASKS_CLIENT_COPY, function(cb) {
 
 
 
-gulp.task('client-build',TASKS_CLIENT_BUILD, function(cb) {
-    cb();
+gulp.task('client-build',['client-vendor'], function(cb) {
+	runSequence(TASKS_CLIENT_BUILD,cb);
 });
 
 gulp.task('client-watch-views', function(cb){

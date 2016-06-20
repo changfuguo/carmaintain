@@ -8,8 +8,7 @@ module.exports = function(config){
         entry: {
             app:[
                 './src/client/static/js/client.js'
-            ],
-            vendor: ["react", "react-redux", "react-router", "redux", "redux-thunk"]
+            ]
         },
         output: {
             path: config.path.distClient + '/static/js',
@@ -34,12 +33,13 @@ module.exports = function(config){
         ],
         progress: true,
 		resolve: {
+			root: path.resolve('src'),
 		    modulesDirectories: [
-		      'src',
 		      'node_modules'
 		    ],
 		    extensions: ['', '.json', '.js', '.jsx']
 		},
+		recordsPath: path.join(__dirname, 'console/_records.json'),
         module: {
             loaders: [
               {
@@ -61,6 +61,37 @@ module.exports = function(config){
             ]
         }                                   
     }
-
-    return webpackConfig;
+	var venderWebpckConfig = {
+	    	devtool: 'cheap-module-source-map',
+	    	entry:{
+	    		vendor: ["react", "react-redux", "react-router","react-dom","redux", "redux-thunk"]
+	    	},
+	    	output: {
+	    		path: config.path.distClient + '/static/js',
+	            filename: '[name].js',
+	            publicPath: config.server_host + ':'+ config.server_port + '/static/',
+	            library:'[name]_library'
+	        },
+	    	plugins: [
+		        new webpack.DefinePlugin({
+		            "process.env": {
+		            	'NODE_ENV' : JSON.stringify('development'),
+		            	'__BROWSER__': JSON.stringify(true)
+		            }
+		        }),
+	        	 
+	        	new webpack.optimize.DedupePlugin(), // 优化的模块，不需要重复加载相同模块
+	            new webpack.optimize.OccurrenceOrderPlugin(),
+	            new webpack.optimize.UglifyJsPlugin({
+	              	compressor: {
+	                	warnings: false
+	              	}
+	            }),
+	            new webpack.DllPlugin({
+			      path: path.join(config.path.distClient, '[name]-manifest.json'),
+			      name: '[name]_library'
+			    })
+	        ],
+	    };
+     return {client:webpackConfig,vendor:venderWebpckConfig};
 }

@@ -5,13 +5,13 @@ import {renderToString} from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import { Provider } from 'react-redux'
 import createHistory from 'history/lib/createMemoryHistory'
-import creatRoutes from './routes'
+import routes from './routes'
 import configureStore from './store/configureStore'
 
 
 const render = function(stateData, ctx) {
 	const history = createHistory();
-	const routes = creatRoutes(history);
+	//const routes = creatRoutes(history);
 	const location = history.createLocation(ctx.originalUrl);
 	return new Promise((resolve, reject) =>{
 		try{

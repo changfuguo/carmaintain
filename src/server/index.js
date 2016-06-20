@@ -57,6 +57,13 @@ if(__DEV__) {
 	});
     let webpackConfig = null;
     webpackConfig = require('./webpack.config.dev')(config);
+    webpackConfig = webpackConfig.client;
+    webpackConfig.plugins.push(
+		new webpack.DllReferencePlugin({
+		    	context: __dirname,
+		    	manifest: require('./dist/vendor-manifest.json')
+			})
+		)
     const compiler = webpack(webpackConfig)
     app.use(webpackDevMiddleware(compiler, { 
       stats: {
