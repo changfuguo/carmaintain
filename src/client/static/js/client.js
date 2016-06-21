@@ -41,9 +41,7 @@ if(module.hot) {
 			renderException(e);
 		}
 	};
-  	module.hot.accept('./routes', () => {
-  		render();
-  	});
+  	module.hot.accept('./routes', render);
 }
 window.Render = render;
 render();

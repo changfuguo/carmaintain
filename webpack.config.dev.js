@@ -8,6 +8,7 @@ module.exports = function(config){
         devtool: 'cheap-module-source-map',
         entry: {
             app:[
+            	'react-hot-loader/patch',
                 'webpack-hot-middleware/client?path=http://' + config.server_host + ':' + config.server_port + '/__webpack_hmr&timeout=20000&reload=true',
                 './src/client/static/js/client.js'
             ]
@@ -49,8 +50,13 @@ module.exports = function(config){
 	                test: /\.js$/,
 	                loader: 'babel',
 	                exclude: /node_modules/,
-	                include: __dirname
-	               
+	                include: __dirname,
+	                "env": {
+						// only enable it when process.env.NODE_ENV is 'development' or undefined
+						"development": {
+							plugins: [ 'react-hot-loader/babel' ]
+						}
+					}
               	},{
 				    test: /\.scss$/, 
 				    //loader: 'style!css?modules&importLoaders=2&sourceMap&localIdentName=[local]___[hash:base64:5]!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap' 
